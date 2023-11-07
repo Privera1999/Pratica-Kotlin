@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Practica04</string>
         <string name="Iphone">Iphone</string>
-        <string name="align_your_body">Align your Body</string>
-        <string name="ab1_inversions">Inversiones</string>
+        <string name="Coche">Coche</string>
+        <string name="Switch">Nintendo Switch</string>
         <string name="ab2_quick_yoga">Quick yoga</string>
         <string name="ab3_stretching">Stretching</string>
         <string name="ab4_tabata">Tabata</string>
