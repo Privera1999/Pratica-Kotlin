@@ -83,19 +83,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    MySootheAppPortrait()
                 }
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
 
 
@@ -316,6 +308,47 @@ fun Destacados(
 }
 
 @Composable
+fun productoscerca(
+    @DrawableRes drawable: Int,
+    @StringRes precio: Int,
+    @StringRes text: Int,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier)
+    {
+
+        Image(
+            painter = painterResource(drawable),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .height(135.dp)
+                .width(135.dp)
+                .clip(RoundedCornerShape(8.dp))
+
+        )
+        Text(
+            text= stringResource(precio),
+            modifier = Modifier
+                .paddingFromBaseline(top = 0.dp, bottom = 8.dp)
+                .align(Alignment.Start),
+            style = MaterialTheme.typography.titleMedium)
+
+        Text(
+            text= stringResource(text),
+            modifier = Modifier
+                .paddingFromBaseline(top = 0.dp, bottom = 8.dp)
+                .align(Alignment.Start),
+            style = MaterialTheme.typography.bodyMedium)
+
+    }
+}
+
+
+
+@Composable
 fun DestacadoGrid(
     modifier: Modifier = Modifier
 ) {
@@ -395,6 +428,7 @@ fun Aplicacion(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(50.dp))
         DestacadoGrid()
         Spacer(Modifier.height(50.dp))
+        Cercademi()
 
     }
 }
@@ -409,6 +443,39 @@ fun MySootheAppPortrait() {
         ) {
                 padding -> Aplicacion(Modifier.padding(padding))
         }
+    }
+
+
+}
+
+@Composable
+fun Cercademi(
+    modifier: Modifier = Modifier
+) {
+    Column {
+        Text(
+            text= "Cerca de mi",
+            modifier = Modifier
+                .padding(start = 16.dp)
+                .paddingFromBaseline(top = 10.dp, bottom = 8.dp),
+            style = MaterialTheme.typography.titleLarge)
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        LazyHorizontalGrid(
+            rows = GridCells.Fixed(3),
+            contentPadding = PaddingValues(horizontal = 50.dp),
+            horizontalArrangement = Arrangement.spacedBy(50.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = modifier.height(800.dp)
+                .width(900.dp)
+        ){
+            items(DestacadosColecction){
+                    item ->
+                productoscerca(item.imagenResId,item.nombreResId,item.precioResId)
+            }
+        }
+
     }
 
 
@@ -488,4 +555,10 @@ fun DestacadosGridPreview() {
 @Composable
 fun BarraNavegacionPreview() {
     Practica04Theme { BarraDeNavegacion(Modifier.padding(top = 24.dp)) }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+fun CercademiPreview() {
+    Practica04Theme { Cercademi() }
 }
