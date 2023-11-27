@@ -61,8 +61,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat.recreate
 import com.pmydm.practica04.ui.theme.Practica04Theme
 
+var categoria = mutableStateOf(0)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -161,7 +163,7 @@ fun Categorias(
                 .width(35.dp)
                 .clip(CircleShape)
                 .border(1.dp, Color.Black, shape = CircleShape)
-                .clickable { categoria++ }
+                .clickable { modificar(drawable=drawable) }
 
         )
         Text(
@@ -368,6 +370,8 @@ fun productoscerca(
     }
 }
 
+var categorianormal=0
+
 
 @Composable
 fun DestacadoGrid(
@@ -382,7 +386,7 @@ fun DestacadoGrid(
         style = MaterialTheme.typography.titleLarge
     )
 
-    var categoria by remember { mutableStateOf(0) }
+
 
 
     LazyRow(
@@ -390,7 +394,7 @@ fun DestacadoGrid(
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        if (categoria == 0) {
+        if (categoria.value==0){
             items(DestacadosColecction) { item ->
                 Destacados(item.imagenResId, item.nombreResId, item.precioResId)
             }
