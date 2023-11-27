@@ -9,7 +9,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -37,12 +36,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -51,8 +52,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
@@ -69,8 +73,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pmydm.practica04.ui.theme.Practica04Theme
-
-
 
 
 class MainActivity : ComponentActivity() {
@@ -284,26 +286,48 @@ fun Destacados(
                 .clip(RoundedCornerShape(8.dp))
 
         )
+
+
         Text(
             text= stringResource(precio),
             modifier = Modifier
                 .paddingFromBaseline(top = 0.dp, bottom = 8.dp)
                 .align(Alignment.Start),
-            style = MaterialTheme.typography.titleMedium)
+            style = MaterialTheme.typography.titleMedium
+            )
 
-        Text(
-            text= stringResource(text),
-            modifier = Modifier
-                .paddingFromBaseline(top = 0.dp, bottom = 8.dp)
-                .align(Alignment.Start),
-            style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text= stringResource(text),
+                    modifier = Modifier
+                        .paddingFromBaseline(top = 0.dp, bottom = 8.dp)
+                        .align(Alignment.Start),
+                    style = MaterialTheme.typography.bodyMedium)
+
 
         Text(
             text= "Destacado",
             modifier = Modifier
-                .paddingFromBaseline(top = 10.dp, bottom = 8.dp)
+                .paddingFromBaseline(top = 10.dp)
                 .align(Alignment.Start),
             style = MaterialTheme.typography.bodySmall)
+
+
+        var favorito by rememberSaveable { mutableStateOf(0) }
+
+        if(favorito==0){
+            IconButton(onClick = {favorito++},
+                modifier.align(Alignment.End)) {
+                Icon(Icons.Default.FavoriteBorder,contentDescription = "")
+            }
+
+        }else{
+            IconButton(onClick = {favorito--},
+                modifier.align(Alignment.End)) {
+                Icon(Icons.Default.Favorite,contentDescription = "")
+            }
+        }
+
+
     }
 }
 
@@ -467,7 +491,8 @@ fun Cercademi(
             contentPadding = PaddingValues(horizontal = 50.dp),
             horizontalArrangement = Arrangement.spacedBy(50.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = modifier.height(800.dp)
+            modifier = modifier
+                .height(800.dp)
                 .width(900.dp)
         ){
             items(DestacadosColecction){
