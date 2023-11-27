@@ -23,5 +23,7 @@
         <string name="Tu">Tú</string>
         <string name="Libro">Libros</string>
         <string name="Consola">Consolas</string>
+    <string name="moto">Moto</string>
+    <string name="motoprecio">Motoprecio</string>
 
 </resources>
