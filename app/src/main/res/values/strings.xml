@@ -23,7 +23,15 @@
         <string name="Tu">Tú</string>
         <string name="Libro">Libros</string>
         <string name="Consola">Consolas</string>
-    <string name="moto">Moto</string>
-    <string name="motoprecio">Motoprecio</string>
+        <string name="Moto1">Honda CBR650R</string>
+        <string name="Moto1Precio">19.900€</string>
+        <string name="Moto2">Benelli BN 125</string>
+        <string name="Moto2Precio">3.900€</string>
+        <string name="Moto3">Kawasaki Ninja 400</string>
+        <string name="Moto3Precio">6.6990€</string>
+        <string name="Moto4">Honda CBF 600</string>
+        <string name="Moto4Precio">8.600€</string>
+        <string name="Moto5">Harley Davidson Calle BOB 114</string>
+        <string name="Moto5Precio">50.600€</string>
 
 </resources>
