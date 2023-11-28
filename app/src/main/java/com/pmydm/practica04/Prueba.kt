@@ -26,15 +26,14 @@ private fun <T> MutableState<T>.setValue(thisObj: T) {
 }
 
     var ListaFav = mutableListOf(
-
-        R.drawable.coche to R.string.Coches
+        R.drawable.coche1 to R.string.HuyundaiNombre
 
     )
 
 fun hola( @DrawableRes drawable: Int){
 
-    if (drawable==2130968596) ListaFav.add(R.drawable.coche1 to R.string.HuyundaiNombre)
-    else if (drawable==2130968597) ListaFav.add(R.drawable.coche2 to R.string.KiaNombre)
+
+    if (drawable==2130968597) ListaFav.add(R.drawable.coche2 to R.string.KiaNombre)
     else if (drawable==2130968598) ListaFav.add(R.drawable.coche3 to R.string.PorscheNombre)
     else if (drawable==2130968599) ListaFav.add(R.drawable.coche4 to R.string.lamborghiniNombre)
     else if (drawable==2130968600) ListaFav.add(R.drawable.coche5 to R.string.BmwNombre)
