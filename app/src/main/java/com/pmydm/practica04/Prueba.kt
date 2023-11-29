@@ -25,18 +25,36 @@ private fun <T> MutableState<T>.setValue(thisObj: T) {
 
 }
 
+data class Favoritosclass(
+    val imagenResId: Int,
+    val nombreResId: Int,
+    val precioResId: Int
+)
+
     var ListaFav = mutableListOf(
-        R.drawable.coche1 to R.string.HuyundaiNombre
+        Favoritosclass (R.drawable.coche1, R.string.HuyundaiNombre , R.string.HyundaiPrecio)
 
     )
 
-fun hola( @DrawableRes drawable: Int){
+fun DarFav(@DrawableRes drawable: Int){
+
+    if (drawable==2130968597) ListaFav.add(Favoritosclass( R.drawable.coche2 , R.string.KiaNombre , R.string.HyundaiPrecio))
+    else if (drawable==2130968598) ListaFav.add(Favoritosclass(R.drawable.coche3 , R.string.PorscheNombre , R.string.PorschePrecio))
+    else if (drawable==2130968599) ListaFav.add(Favoritosclass(R.drawable.coche4 , R.string.lamborghiniNombre , R.string.lamborghiniPrecio))
+    else if (drawable==2130968600) ListaFav.add(Favoritosclass(R.drawable.coche5 , R.string.BmwNombre , R.string.BmwPrecio))
+    else if (drawable==2130968596) ListaFav.add(Favoritosclass(R.drawable.coche1 , R.string.HuyundaiNombre ,  R.string.HyundaiPrecio))
 
 
-    if (drawable==2130968597) ListaFav.add(R.drawable.coche2 to R.string.KiaNombre)
-    else if (drawable==2130968598) ListaFav.add(R.drawable.coche3 to R.string.PorscheNombre)
-    else if (drawable==2130968599) ListaFav.add(R.drawable.coche4 to R.string.lamborghiniNombre)
-    else if (drawable==2130968600) ListaFav.add(R.drawable.coche5 to R.string.BmwNombre)
+}
+
+fun QuitarFav(@DrawableRes drawable: Int){
+
+    if (drawable==2130968597) ListaFav.remove(element = Favoritosclass(R.drawable.coche2 , R.string.KiaNombre , R.string.HyundaiPrecio))
+    else if (drawable==2130968598) ListaFav.remove(element = Favoritosclass(R.drawable.coche3 , R.string.PorscheNombre , R.string.PorschePrecio))
+    else if (drawable==2130968599) ListaFav.remove(element = Favoritosclass(R.drawable.coche4 , R.string.lamborghiniNombre , R.string.lamborghiniPrecio))
+    else if (drawable==2130968600) ListaFav.remove(element = Favoritosclass(R.drawable.coche5 , R.string.BmwNombre , R.string.BmwPrecio))
+    else if (drawable==2130968596) ListaFav.remove(element = Favoritosclass(R.drawable.coche1 , R.string.HuyundaiNombre ,  R.string.HyundaiPrecio))
+
 
 }
 

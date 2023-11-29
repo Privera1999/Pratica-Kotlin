@@ -305,14 +305,14 @@ fun Destacados(
         var favorito by rememberSaveable { mutableStateOf(0) }
 
         if(favorito==0){
-            IconButton(onClick = {favorito++;hola(drawable=drawable)},
+            IconButton(onClick = {favorito++;DarFav(drawable=drawable)},
                 modifier.align(Alignment.End)
             ) {
                 Icon(Icons.Default.FavoriteBorder,contentDescription = "",tint = Color.Red)
             }
 
         }else{
-            IconButton(onClick = {favorito-- },
+            IconButton(onClick = {favorito--;QuitarFav(drawable=drawable) },
                 modifier.align(Alignment.End)) {
                 Icon(Icons.Default.Favorite,contentDescription = "",tint = Color.Red)
             }
@@ -406,7 +406,7 @@ private fun BarraDeNavegacion(navController: NavController) {
     {
         NavigationBarItem(
             selected = true ,
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate(route = AppScreens.HomePantalla.route) },
             icon = { Icon(imageVector = Icons.Default.Home , contentDescription = null ) },
             label = { Text(text = stringResource(R.string.Inicio))}
         )
