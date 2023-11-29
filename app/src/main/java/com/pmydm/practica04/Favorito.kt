@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -57,6 +58,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat.recreate
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.pmydm.practica04.ui.theme.Practica04Theme
@@ -138,7 +140,7 @@ fun DestacadoGridFavorito(
 
     ) {
 
-    ListaFav.removeFirst()
+    ListaFav.remove(element = Favoritosclass(R.drawable.coche1 , R.string.HuyundaiNombre ,  R.string.HyundaiPrecio))
 
     Column {
 
@@ -219,7 +221,9 @@ fun FavoritoApp(navController: NavController) {
                     fontSize = 35.sp)
                             },
 
-            )},
+            )
+                     
+                     },
 
             bottomBar = { BarraDeNavegacion(navController) }
         ) {
