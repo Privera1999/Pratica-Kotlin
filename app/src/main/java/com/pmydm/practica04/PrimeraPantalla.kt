@@ -1,9 +1,6 @@
 package com.pmydm.practica04
 
-
-
 import android.annotation.SuppressLint
-import android.widget.RatingBar
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
@@ -66,7 +63,6 @@ import com.pmydm.practica04.ui.theme.Practica04Theme
 
 var categoria = mutableStateOf(0)
 var idcategoria=0
-
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -451,7 +447,6 @@ private fun BarraDeNavegacion(navController: NavController) {
             icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = null) },
             label = { Text(text = stringResource(R.string.Tu))}
         )
-
     }
 }
 
@@ -484,8 +479,6 @@ fun MySootheAppPortrait(navController: NavController) {
                 padding -> Aplicacion(Modifier.padding(padding))
         }
     }
-
-
 }
 
 @Composable
@@ -523,7 +516,6 @@ fun Cercademi(
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -552,10 +544,6 @@ fun muybuscadosGrid() {
 }
 
 
-
-
-
-
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
 fun CategoriasRowPreview() {
@@ -570,7 +558,6 @@ fun DestacadosGridPreview() {
         DestacadoGrid()
     }
 }
-
 
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
