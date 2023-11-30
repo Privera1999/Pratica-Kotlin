@@ -3,7 +3,9 @@ package com.pmydm.practica04
 
 
 import android.annotation.SuppressLint
+import android.widget.RatingBar
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -63,6 +65,7 @@ import androidx.navigation.NavController
 import com.pmydm.practica04.ui.theme.Practica04Theme
 
 var categoria = mutableStateOf(0)
+var idcategoria=0
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -138,6 +141,7 @@ fun MuyBuscado(
 fun Categorias(
     @DrawableRes drawable: Int,
     @StringRes text: Int,
+    @IntegerRes id:Int,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -153,13 +157,14 @@ fun Categorias(
                 .width(35.dp)
                 .clip(CircleShape)
                 .border(1.dp, Color.Black, shape = CircleShape)
-                .clickable { modificar(drawable=drawable) }
+                .clickable { modificar(idcategoria = id) }
 
         )
         Text(
             text= stringResource(text),
             modifier = Modifier.paddingFromBaseline(top = 24.dp,bottom = 8.dp),
             style = MaterialTheme.typography.bodyMedium)
+
     }
 }
 
@@ -174,7 +179,8 @@ fun CategoriasRow(
         horizontalArrangement = Arrangement.spacedBy(40.dp)
     ){
         items(CategoriasColeccion){
-                item -> Categorias(item.drawable, item.text)
+                item -> Categorias(item.emoticonoRedId, item.nombreResId,item.IdResId)
+
         }
     }
 
@@ -192,38 +198,44 @@ private val muybuscadoColeccion = listOf(
 
     ).map { DrawableStringPair(it.first, it.second) }
 
+data class CategoriaClass(
+    val emoticonoRedId: Int,
+    val nombreResId: Int,
+    val IdResId: Int
+)
+
 val CategoriasColeccion = listOf(
-    R.drawable.emoticonocoche to R.string.Coches,
-    R.drawable.emoticonomoto to R.string.Motos,
-    R.drawable.emoticonocasco to R.string.Accesorios,
-    R.drawable.emoticonoropa to R.string.Ropa,
-    R.drawable.emoticonolibro to R.string.Libro,
-    R.drawable.emoticonoconsola to R.string.Consola,
+    CategoriaClass(R.drawable.emoticonocoche, R.string.Coches, 0),
+    CategoriaClass(R.drawable.emoticonomoto, R.string.Motos,1),
+    CategoriaClass(R.drawable.emoticonocasco,  R.string.Accesorios,2),
+    CategoriaClass(R.drawable.emoticonoropa, R.string.Ropa,3),
+    CategoriaClass(R.drawable.emoticonolibro, R.string.Libro,4),
+    CategoriaClass(R.drawable.emoticonoconsola, R.string.Consola,5),
 
-
-    ).map { DrawableStringPair(it.first, it.second) }
+    )
 
 data class Destacadosclass(
     val imagenResId: Int,
     val nombreResId: Int,
-    val precioResId: Int
+    val precioResId: Int,
+    val ID: Int,
 )
 
 private val DestacadosColecction = listOf(
-    Destacadosclass(R.drawable.coche1, R.string.HyundaiPrecio, R.string.HuyundaiNombre),
-    Destacadosclass(R.drawable.coche2, R.string.KiaPrecio, R.string.KiaNombre),
-    Destacadosclass(R.drawable.coche3, R.string.PorschePrecio, R.string.PorscheNombre),
-    Destacadosclass(R.drawable.coche4, R.string.lamborghiniPrecio, R.string.lamborghiniNombre),
-    Destacadosclass(R.drawable.coche5, R.string.BmwPrecio, R.string.BmwNombre),
+    Destacadosclass(R.drawable.coche1, R.string.HyundaiPrecio, R.string.HuyundaiNombre,1),
+    Destacadosclass(R.drawable.coche2, R.string.KiaPrecio, R.string.KiaNombre,2),
+    Destacadosclass(R.drawable.coche3, R.string.PorschePrecio, R.string.PorscheNombre,3),
+    Destacadosclass(R.drawable.coche4, R.string.lamborghiniPrecio, R.string.lamborghiniNombre,4),
+    Destacadosclass(R.drawable.coche5, R.string.BmwPrecio, R.string.BmwNombre,5),
 
     )
 
 private val DestacadosColecctionMotos = listOf(
-    Destacadosclass(R.drawable.moto1, R.string.Moto1, R.string.Moto1Precio),
-    Destacadosclass(R.drawable.moto2, R.string.Moto2, R.string.Moto2Precio),
-    Destacadosclass(R.drawable.moto3, R.string.Moto3, R.string.Moto3Precio),
-    Destacadosclass(R.drawable.moto4, R.string.Moto4, R.string.Moto4Precio),
-    Destacadosclass(R.drawable.moto5, R.string.Moto5, R.string.Moto5Precio),
+    Destacadosclass(R.drawable.moto1, R.string.Moto1, R.string.Moto1Precio,6),
+    Destacadosclass(R.drawable.moto2, R.string.Moto2, R.string.Moto2Precio,7),
+    Destacadosclass(R.drawable.moto3, R.string.Moto3, R.string.Moto3Precio,8),
+    Destacadosclass(R.drawable.moto4, R.string.Moto4, R.string.Moto4Precio,9),
+    Destacadosclass(R.drawable.moto5, R.string.Moto5, R.string.Moto5Precio,10),
 
     )
 
@@ -262,6 +274,7 @@ fun Destacados(
     @DrawableRes drawable: Int,
     @StringRes precio: Int,
     @StringRes text: Int,
+    @IntegerRes id: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -279,7 +292,6 @@ fun Destacados(
                 .clip(RoundedCornerShape(8.dp))
 
         )
-
 
         Text(
             text= stringResource(precio),
@@ -305,14 +317,14 @@ fun Destacados(
         var favorito by rememberSaveable { mutableStateOf(0) }
 
         if(favorito==0){
-            IconButton(onClick = {favorito++;DarFav(drawable=drawable)},
+            IconButton(onClick = {favorito++;DarFav(id=id)},
                 modifier.align(Alignment.End)
             ) {
                 Icon(Icons.Default.FavoriteBorder,contentDescription = "",tint = Color.Red)
             }
 
         }else{
-            IconButton(onClick = {favorito--;QuitarFav(drawable=drawable) },
+            IconButton(onClick = {favorito--;QuitarFav(id=id) },
                 modifier.align(Alignment.End)) {
                 Icon(Icons.Default.Favorite,contentDescription = "",tint = Color.Red)
             }
@@ -322,6 +334,7 @@ fun Destacados(
     }
 }
 
+
 @Composable
 fun productoscerca(
     @DrawableRes drawable: Int,
@@ -329,6 +342,7 @@ fun productoscerca(
     @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier)
@@ -358,6 +372,8 @@ fun productoscerca(
                 .align(Alignment.Start),
             style = MaterialTheme.typography.bodyMedium)
 
+
+
     }
 }
 
@@ -377,9 +393,6 @@ fun DestacadoGrid(
         style = MaterialTheme.typography.titleLarge
     )
 
-
-
-
     LazyRow(
         modifier = modifier,
         contentPadding = PaddingValues(horizontal = 16.dp),
@@ -387,11 +400,11 @@ fun DestacadoGrid(
     ) {
         if (categoria.value==0){
             items(DestacadosColecction) { item ->
-                Destacados(item.imagenResId, item.nombreResId, item.precioResId)
+                Destacados(item.imagenResId, item.nombreResId, item.precioResId,item.ID)
             }
         } else {
             items(DestacadosColecctionMotos) { item ->
-                Destacados(item.imagenResId, item.nombreResId, item.precioResId)
+                Destacados(item.imagenResId, item.nombreResId, item.precioResId,item.ID)
             }
         }
 
@@ -541,14 +554,7 @@ fun muybuscadosGrid() {
 
 
 
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun CategoriasPreview() {
-    Practica04Theme {
-        Categorias(drawable = R.drawable.emoticonocoche, text = R.string.Coches,
-            modifier = Modifier.padding(8.dp))
-    }
-}
+
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
@@ -556,14 +562,6 @@ fun CategoriasRowPreview() {
     Practica04Theme { CategoriasRow() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun DestacadosPreviwew() {
-    Practica04Theme {
-        Destacados(drawable = R.drawable.coche1, text = R.string.HuyundaiNombre, precio = R.string.HyundaiPrecio,
-            modifier = Modifier.padding(8.dp))
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
