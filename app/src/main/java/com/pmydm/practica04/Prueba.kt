@@ -38,11 +38,11 @@ data class Favoritosclass(
 
 fun DarFav(id: Int){
 
-    if (id==1) ListaFav.add(Favoritosclass( R.drawable.coche2 , R.string.KiaNombre , R.string.HyundaiPrecio))
-    else if (id==2) ListaFav.add(Favoritosclass(R.drawable.coche3 , R.string.PorscheNombre , R.string.PorschePrecio))
-    else if (id==3) ListaFav.add(Favoritosclass(R.drawable.coche4 , R.string.lamborghiniNombre , R.string.lamborghiniPrecio))
-    else if (id==4) ListaFav.add(Favoritosclass(R.drawable.coche5 , R.string.BmwNombre , R.string.BmwPrecio))
-    else if (id==5) ListaFav.add(Favoritosclass(R.drawable.coche1 , R.string.HuyundaiNombre ,  R.string.HyundaiPrecio))
+    if (id==1) ListaFav.add(Favoritosclass (R.drawable.coche1, R.string.HuyundaiNombre , R.string.HyundaiPrecio))
+    else if (id==2) ListaFav.add(Favoritosclass( R.drawable.coche2 , R.string.KiaNombre , R.string.HyundaiPrecio))
+    else if (id==3) ListaFav.add(Favoritosclass(R.drawable.coche3 , R.string.PorscheNombre , R.string.PorschePrecio))
+    else if (id==4) ListaFav.add(Favoritosclass(R.drawable.coche4 , R.string.lamborghiniNombre , R.string.lamborghiniPrecio))
+    else if (id==5) ListaFav.add(Favoritosclass(R.drawable.coche5 , R.string.BmwNombre , R.string.BmwPrecio))
     else if (id==6) ListaFav.add(Favoritosclass(R.drawable.moto1 , R.string.Moto1 ,  R.string.Moto1Precio))
     else if (id==7) ListaFav.add(Favoritosclass(R.drawable.moto2 , R.string.Moto2 ,  R.string.Moto2Precio))
     else if (id==8) ListaFav.add(Favoritosclass(R.drawable.moto3 , R.string.Moto3 ,  R.string.Moto3Precio))
